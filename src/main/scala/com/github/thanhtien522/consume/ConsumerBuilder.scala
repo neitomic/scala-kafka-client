@@ -3,13 +3,13 @@ package com.github.thanhtien522.consume
 import java.util
 
 import com.typesafe.config.{Config, ConfigFactory}
-import org.apache.kafka.clients.consumer.{ConsumerRebalanceListener, ConsumerRecord}
+import org.apache.kafka.clients.consumer.ConsumerRebalanceListener
 import org.apache.kafka.common.TopicPartition
-import org.apache.kafka.common.serialization.{Deserializer, StringDeserializer}
+import org.apache.kafka.common.serialization.Deserializer
 
+import scala.collection.JavaConversions._
 import scala.collection.mutable
 import scala.util.matching.Regex
-import scala.collection.JavaConversions._
 
 class ConsumerBuilder[K, V]() {
 
@@ -116,23 +116,4 @@ class ConsumerBuilder[K, V]() {
 
 object ConsumerBuilder {
   def apply[K, V](): ConsumerBuilder[K, V] = new ConsumerBuilder[K, V]()
-}
-
-
-object Test extends App {
-  val consumer = new ConsumerBuilder[String, String]()
-    .setGroupId("group_id")
-    .setClientId("client_id")
-    .setBootstrapServers("servers")
-    .setDeserializer(new StringDeserializer, new StringDeserializer)
-    .setSubscribeTopics(Seq("topic"))
-    .setPollInterval(100)
-    .setConsumer(new KafkaRecordConsumer[String, String] {
-      override def consume(record: ConsumerRecord[String, String]): Unit = {
-        println(s"${record.topic()} - ${record.partition()} - ${record.offset()} - ${record.key()} - ${record.value()}")
-      }
-    })
-    .build()
-
-  consumer.start()
 }
