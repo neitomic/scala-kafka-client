@@ -10,7 +10,7 @@ version := "0.1.0"
 
 scalaVersion := "2.11.11"
 
-isSnapshot := true
+isSnapshot := false
 
 resolvers += "Artima Maven Repository" at "http://repo.artima.com/releases"
 
@@ -29,6 +29,8 @@ licenses := Seq("MIT License" -> url("http://www.opensource.org/licenses/mit-lic
 publishArtifact in(Test, packageBin) := false
 
 publishMavenStyle := true
+
+useGpg := true
 
 homepage := Some(url("https://github.com/thanhtien522/scala-kafka-client"))
 
