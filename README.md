@@ -1,6 +1,21 @@
 # Scala Kafka Client
 > A wrapped producer and consumer for Kafka
 
+## Library
+### Maven
+```xml
+<dependency>
+    <groupId>com.github.thanhtien522</groupId>
+    <artifactId>scala-kafka-client_2.11</artifactId>
+    <version>0.1.0</version>
+</dependency>
+```
+
+### Sbt
+```scala
+libraryDependencies += "com.github.thanhtien522" %% "scala-kafka-client" % "0.1.0"
+```
+
 ## How to use
 ### Producer
 
